@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zintlr Email Templates</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .template-container {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .template-header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .template-header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .template-header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .template-body {
+            padding: 40px 30px;
+        }
+
+        .stats-grid {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .stat-item {
+            flex: 1;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1e3a8a;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #6b7280;
+            margin-top: 5px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .feature-list li {
+            padding: 10px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        .compliance-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .badge {
+            background: #f3f4f6;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #374151;
+            font-weight: 600;
+        }
+
+        .footer {
+            background: #1f2937;
+            color: #9ca3af;
+            padding: 20px 30px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+
+        /* Template 2 Specific Styles */
+        .template-2 .template-header {
+            background: white;
+            color: #1e3a8a;
+            border-bottom: 4px solid #3b82f6;
+        }
+
+        .template-2 .logo {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .pricing-card {
+            background: #f8faff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .price {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+
+        .price-label {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        /* Template 3 Specific Styles */
+        .template-3 {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+        }
+
+        .template-3 .template-body {
+            background: white;
+            color: #374151;
+        }
+
+        .template-3 .cta-button {
+            background: #1e3a8a;
+            width: 100%;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .urgency-banner {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .social-proof {
+            background: #f0f9ff;
+            padding: 20px;
+            border-left: 4px solid #3b82f6;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .template-selector {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+        }
+
+        .template-selector h2 {
+            color: #1e3a8a;
+            margin-bottom: 20px;
+        }
+
+        .template-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            background: #e5e7eb;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn.active {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .template {
+            display: none;
+        }
+
+        .template.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="template-selector">
+        <h2>Zintlr-Inspired Email Templates</h2>
+        <div class="template-nav">
+            <button class="nav-btn active" onclick="showTemplate(1)">Product Launch</button>
+            <button class="nav-btn" onclick="showTemplate(2)">Feature Update</button>
+            <button class="nav-btn" onclick="showTemplate(3)">Limited Offer</button>
+        </div>
+        <p style="color: #6b7280;">Click the buttons above to preview different email templates</p>
+    </div>
+
+    <!-- Template 1: Product Launch -->
+    <div id="template1" class="template active">
+        <div class="template-container">
+            <div class="template-header">
+                <h1>🚀 Introducing Our Latest Innovation</h1>
+                <p>Supercharge your sales with AI-powered insights</p>
+            </div>
+            
+            <div class="template-body">
+                <h2 style="color: #1e3a8a; margin-bottom: 20px;">Transform Your Sales Process Today</h2>
+                
+                <p style="color: #374151; margin-bottom: 20px;">
+                    We're excited to announce our newest feature that's already helping businesses like yours achieve unprecedented growth rates.
+                </p>
+
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">98%</span>
+                        <div class="stat-label">Data Accuracy</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">250M+</span>
+                        <div class="stat-label">Verified Profiles</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">2x</span>
+                        <div class="stat-label">Better Conversion</div>
+                    </div>
+                </div>
+
+                <ul class="feature-list">
+                    <li>Access verified emails and phone numbers instantly</li>
+                    <li>AI-powered personality insights for better engagement</li>
+                    <li>Seamless integration with your existing workflow</li>
+                    <li>GDPR compliant and enterprise-ready security</li>
+                </ul>
+
+                <div style="text-align: center; margin: 30px 0;">
+                    <a href="#" class="cta-button">Start Free Trial</a>
+                </div>
+
+                <div class="compliance-badges">
+                    <span class="badge">GDPR Compliant</span>
+                    <span class="badge">SOC 2 Certified</span>
+                    <span class="badge">ISO 27001</span>
+                </div>
+            </div>
+
+            <div class="footer">
+                <p>© 2025 Your Company. All rights reserved.</p>
+                <p><a href="#">Unsubscribe</a> | <a href="#">Privacy Policy</a> | <a href="#">Contact Support</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Template 2: Feature Update -->
+    <div id="template2" class="template template-2">
+        <div class="template-container">
+            <div class="template-header">
+                <div class="logo">DataFlow Pro</div>
+                <h1>New Chrome Extension Available</h1>
+                <p>Prospect like a pro, anywhere you work</p>
+            </div>
+            
+            <div class="template-body">
+                <p style="color: #374151; margin-bottom: 30px; font-size: 16px;">
+                    Great news! Our powerful Chrome extension is now available, bringing instant insights directly to your browser.
+                </p>
+
+                <div class="pricing-card">
+                    <div class="price">Free</div>
+                    <div class="price-label">for existing customers</div>
+                    <p style="margin: 15px 0; color: #6b7280;">Get instant personality insights and contact details on any website</p>
+                </div>
+
+                <h3 style="color: #1e3a8a; margin: 25px 0 15px;">Works seamlessly with:</h3>
+                <ul class="feature-list">
+                    <li>LinkedIn profiles and company pages</li>
+                    <li>Any company website for instant insights</li>
+                    <li>CRM platforms and sales tools</li>
+                    <li>Social media platforms</li>
+                </ul>
+
+                <div class="social-proof">
+                    "This extension has completely transformed how we prospect. We're finding qualified leads 3x faster than before." - Sarah Chen, Sales Director
+                </div>
+
+                <div style="text-align: center; margin: 30px 0;">
+                    <a href="#" class="cta-button">Install Extension Now</a>
+                </div>
+
+                <p style="text-align: center; color: #6b7280; font-size: 14px;">
+                    Takes less than 30 seconds to install • Works with Chrome, Edge & Firefox
+                </p>
+            </div>
+
+            <div class="footer">
+                <p>© 2025 Your Company. All rights reserved.</p>
+                <p><a href="#">Unsubscribe</a> | <a href="#">Privacy Policy</a> | <a href="#">Contact Support</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Template 3: Limited Offer -->
+    <div id="template3" class="template template-3">
+        <div class="template-container">
+            <div class="template-header">
+                <h1>⚡ Limited Time: 50% Off Premium</h1>
+                <p>Exclusive offer for our valued subscribers</p>
+            </div>
+            
+            <div class="template-body">
+                <div class="urgency-banner">
+                    ⏰ Only 48 hours left! Offer expires March 15th
+                </div>
+
+                <h2 style="color: #1e3a8a; margin-bottom: 20px;">Double Your Sales Pipeline in 30 Days</h2>
+                
+                <p style="color: #374151; margin-bottom: 25px;">
+                    Join thousands of sales professionals who've already transformed their outreach strategy. This exclusive discount won't last long.
+                </p>
+
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number" style="color: #f97316;">50%</span>
+                        <div class="stat-label">Limited Discount</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5,000+</span>
+                        <div class="stat-label">Happy Customers</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">48hrs</span>
+                        <div class="stat-label">Time Remaining</div>
+                    </div>
+                </div>
+
+                <h3 style="color: #1e3a8a; margin: 25px 0 15px;">What you get with Premium:</h3>
+                <ul class="feature-list">
+                    <li>Unlimited prospect searches and exports</li>
+                    <li>Advanced personality profiling and insights</li>
+                    <li>Priority customer support and onboarding</li>
+                    <li>Custom integrations and API access</li>
+                    <li>Advanced analytics and reporting dashboard</li>
+                </ul>
+
+                <a href="#" class="cta-button">Claim 50% Discount Now</a>
+
+                <p style="text-align: center; color: #6b7280; font-size: 14px; margin-top: 15px;">
+                    30-day money-back guarantee • No setup fees • Cancel anytime
+                </p>
+
+                <div class="compliance-badges">
+                    <span class="badge">Secure Checkout</span>
+                    <span class="badge">Money-back Guarantee</span>
+                    <span class="badge">Enterprise Security</span>
+                </div>
+            </div>
+
+            <div class="footer">
+                <p>© 2025 Your Company. All rights reserved.</p>
+                <p><a href="#">Unsubscribe</a> | <a href="#">Privacy Policy</a> | <a href="#">Contact Support</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTemplate(templateNumber) {
+            // Hide all templates
+            document.querySelectorAll('.template').forEach(template => {
+                template.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected template
+            document.getElementById(`template${templateNumber}`).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
